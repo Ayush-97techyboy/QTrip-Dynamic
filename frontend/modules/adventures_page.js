@@ -5,13 +5,18 @@ import config from "../conf/index.js";
 function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
-
+  const cityParams = new URLSearchParams(search)
+  const cityID = cityParams.get('city')
+  // console.log(cityID)
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
   // 1. Fetch adventures using the Backend API and return the data
+  const response = await fetch(config.backendEndpoint+'/adventures/?city='+city)
+  const cities = await response.json();
+  return cities;
 
 }
 
@@ -19,7 +24,19 @@ async function fetchAdventures(city) {
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
+  const container = document.getElementById('data')
+  const imgDiv = document.createElement('div')
+  const textDiv = document.createElement('div')
+  // const list = document.getElementById("div").classList;
+  // list.add("tile-text");
+  imgDiv.setAttribute('style',`background-image: url(${image}); width: 22%; height: 375px; background-size: cover; background-position: center center; margin: 10px; padding: 2px; color: white; border-radius: 8px;`);
+  imgDiv.classList.add('col-lg-6');
+  textDiv.setAttribute('style', `margin-top: 16rem; align-items: center`);
+  const infoDiv = document.createElement('div');
+  infoDiv.innerHTML = `<h1>${adventures}</h1>`
 
+  imgDiv.append(infoDiv)
+  container.append(imgDiv)
 }
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.

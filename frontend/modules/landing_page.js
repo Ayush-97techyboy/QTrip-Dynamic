@@ -41,17 +41,23 @@ function addCityToDOM(id, city, description, image) {
   // TODO: MODULE_CITIES
   // 1. Populate the City details and insert those details into the DOM
   const container = document.getElementById('data')
-  const imgDiv = document.createElement('div')
-  const textDiv = document.createElement('tile-text')
-  // const list = document.getElementById("div").classList;
-  // list.add("tile-text");
-  imgDiv.setAttribute('style',`background-image: url(${image}); width: 22%; height: 375px; background-size: cover; background-position: center center; margin: 10px; padding: 2px; color: white; border-radius: 8px;`)
-  imgDiv.classList.add('col-lg-6');
-  textDiv.setAttribute('style', `margin-top: 16rem; align-items: center`)
-  const infoDiv = document.createElement('div')
-  infoDiv.innerHTML = `<h1>${description}</h1>`
-  imgDiv.append(infoDiv)
-  container.append(imgDiv)
+  // const container = document.getElementById('data')
+
+  let cityEl = document.createElement('div')
+  cityEl.className = 'col-6 col-lg-3 mb-4 col-md-4'
+  cityEl.innerHTML = `
+                <a href="pages/adventures/?city=${id}" id="${id}">
+                  <div class="tile">
+                    <div class="tile-text text-center">
+                      <h5>${city}</h5>
+                      <p>${description}</p> 
+                    </div>
+                      <img class="img-responsive" src="${image}"/>
+                  </div>
+                </a>
+                           
+  `
+  container.append(cityEl)
 } 
 
 export { init, fetchCities, addCityToDOM }
