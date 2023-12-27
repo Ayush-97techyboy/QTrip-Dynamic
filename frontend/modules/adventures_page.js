@@ -24,7 +24,7 @@ async function fetchAdventures(city) {
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
-  const container = document.getElementById('data') 
+  const container = document.getElementById('data2') 
   let cityEl = document.createElement('div')
   cityEl.className = 'col-6 col-lg-3 mb-4 col-md-4'
   cityEl.innerHTML = `

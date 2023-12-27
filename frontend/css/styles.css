@@ -50,7 +50,7 @@ footer {
   border-radius: 3px;
   cursor: pointer;
   transition: 0.2s all;
-  overflow:hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
