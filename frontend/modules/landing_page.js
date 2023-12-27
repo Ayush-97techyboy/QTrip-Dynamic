@@ -41,8 +41,6 @@ function addCityToDOM(id, city, description, image) {
   // TODO: MODULE_CITIES
   // 1. Populate the City details and insert those details into the DOM
   const container = document.getElementById('data')
-  // const container = document.getElementById('data')
-
   let cityEl = document.createElement('div')
   cityEl.className = 'col-6 col-lg-3 mb-4 col-md-4'
   cityEl.innerHTML = `
@@ -54,8 +52,7 @@ function addCityToDOM(id, city, description, image) {
                     </div>
                       <img class="img-responsive" src="${image}"/>
                   </div>
-                </a>
-                           
+                </a>                           
   `
   container.append(cityEl)
 } 
