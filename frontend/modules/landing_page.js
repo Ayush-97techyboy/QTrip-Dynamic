@@ -24,7 +24,7 @@ async function fetchCities() {
   // debugger;
   // TODO: MODULE_CITIES
   // 1. Fetch cities using the Backend API and return the data
-  return fetch(`${config.backendEndpoint}/cities`)
+  return  fetch(`${config.backendEndpoint}/cities`)
   .then(response => response.json())
   .catch(error => {
     console.log('Error fetching cities:', error);

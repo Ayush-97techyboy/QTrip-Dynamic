@@ -7,16 +7,20 @@ function getCityFromURL(search) {
   // 1. Extract the city id from the URL's Query Param and return it
   const cityParams = new URLSearchParams(search)
   const cityID = cityParams.get('city')
-  console.log(cityID)
+  return cityID;
+  // console.log(cityID)
 }
 
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
   // TODO: MODULE_ADVENTURES
-  // 1. Fetch adventures using the Backend API and return the data
-  const response = await fetch(config.backendEndpoint+'/adventures/?city='+city)
-  const cities = await response.json();
-  return cities;
+  // 1. Fetch adventures using the Backend API and return the data  
+  return fetch(`${config.backendEndpoint}/pages/adventures/?city=`+city)
+  .then(response => response.json())
+  .catch(error => {
+    console.log('Error fetching cities:', error);
+    return null;
+  });
 
 }
 
@@ -24,18 +28,59 @@ async function fetchAdventures(city) {
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
-  const container = document.getElementById('data2') 
-  let cityEl = document.createElement('div')
-  cityEl.className = 'col-6 col-lg-3 mb-4 col-md-4'
-  cityEl.innerHTML = `
-                  <div class="activity-card">
-                  <p>${adventures}</p>
-                  </div>
-                                          
-  `
-  container.append(cityEl)
-}
+  let data = document.getElementById("data");
 
+    let divtag = document.createElement("div");
+  
+    adventures.forEach((ele) =>
+  
+    {
+  
+    // let divtag = document.createElement("div");
+  
+    divtag.className = "col-6 col-lg-3 mb-3 position-relative";
+  
+    // let {id,name, costPerHead, currency, image, duration, category} = ele;
+  
+    divtag.innerHTML = `
+  
+    <a id = "${ele.id}" href="detail/?adventure=${ele.id}">
+  
+        <div class="activity-card">
+  
+          <img src="${ele.image}" class ="activity-card img" alt="..." />
+  
+          <div class ="category-banner">${ele.category}</div>
+  
+          <div class="d-md-flex justify-content-between w-100 p-2">
+  
+            <h5>${ele.name}</h5>
+  
+            <p>${ele.currency} ${ele.costPerHead}</p>
+  
+          </div>
+  
+          <div class="d-md-flex justify-content-between w-100 p-2">
+  
+            <h5>Duration</h5>
+  
+            <p>${ele.duration} Hours</p>
+  
+          </div>
+  
+        </div>
+  
+      </a>
+      
+    `;
+  
+      data.appendChild(divtag);
+  
+  });
+  
+  }
+
+  
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.
 function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
