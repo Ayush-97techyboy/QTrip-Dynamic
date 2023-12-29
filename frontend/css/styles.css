@@ -26,8 +26,8 @@ footer {
   color: #999;
   position: absolute;
   bottom: 0;
-  width: 100%;
-  height: 2.5rem;  
+  /* width: 100%; */
+  /* height: 2.5rem;   */
 }
 
 .banner {
@@ -39,18 +39,19 @@ footer {
 
 .content {
   padding: 100px 0px;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
 }
 .tile {
   position: relative;
   height: 100%;
-  width: 100%;
-  padding: 6px;
-  border-radius: 3px;
+  /* width: calc(25% - 20px); */
+  /* padding: 6px; */
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s all;
+  -webkit-transition: 0.1s all;
   overflow: hidden;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -60,24 +61,19 @@ footer {
   width: 100%;
   height: 100%;
   border-radius: 8px;
-  overflow: hidden;
-  transition: 0.2s all;
-  filter: brightness(70%);
+  -webkit-transition: 0.1s all;
+  /* -webkit-filter: brightness(70%); */
 }
 .tile img:hover {
-  filter: brightness(50%);
+  -webkit-filter: brightness(50%);
   transform: scale(1.1);
 }
 
 .tile-text {
   position: absolute;
-  display: flex;
-  margin: auto;
+  z-index: 1;
   text-transform: uppercase;
   letter-spacing: 2px;
-  align-items: center;
-  justify-content: space-between;
-  text-size-adjust: 5rem;
 }
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
@@ -116,12 +112,12 @@ footer {
   color: #000;
   position: relative;
   height: 350px;
-  width: calc(25% - 20px);
-  padding: 6px;
+  /* width: calc(25% - 20px); */
+  /* padding: 6px; */
   border: 1px solid #ddd;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s all;
+  -webkit-transition: 0.2s all;
   overflow: hidden;
 
   display: flex;
@@ -132,13 +128,13 @@ footer {
 .activity-card img {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
-  transition: 0.2s all;
-  filter: brightness(70%);
+  /* border-radius: 8px; */
+  -webkit-transition: 0.2s all;
+  /* -webkit-filter: brightness(70%); */
 }
 .activity-card img:hover {
-  filter: brightness(50%);
-  transform: scale(1.1);
+  -webkit-filter: brightness(50%);
+  /* transform: scale(1.1); */
 }
 
 /* activity-detail page css */
@@ -147,18 +143,18 @@ footer {
   border: 1px solid #eee;
   border-radius: 4px;
   padding: 16px;
-  margin: 8px;
+  /* margin: 8px; */
 }
 
 .activity-card-image {
   height: 500px;
   width: 100%;
   cursor: pointer;
-  transition: 0.2s all;
+  -webkit-transition: 0.2s all;
   border-radius: 2px;
 }
 .activity-card-image:hover {
-  filter: brightness(50%);
+  -webkit-filter: brightness(50%);
 }
 .experience-content ul li {
   margin-left: 16px;
@@ -183,12 +179,12 @@ footer {
 }
 .category-banner {
   position: absolute;
-  height: 50px;
+  /* height: 50px; */
   padding: 5px 10px;
   box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.3);
-  
+  /*
   box-shadow: 0px 9.4px 20.4px rgba(0, 0, 0, 0.13),
-    0px 9.2px 20.6px rgba(0, 0, 0, 0.1);
+    0px 9.2px 20.6px rgba(0, 0, 0, 0.1); */
   min-width: 50%;
   color: #fff;
   background: rgb(255, 145, 0);
@@ -196,7 +192,7 @@ footer {
   right: 0;
   z-index: 1;
   margin-top: 16px;
-  margin-right: 8px;
+  /* margin-right: 8px; */
   display: flex;
   justify-content: center;
   align-items: center;
