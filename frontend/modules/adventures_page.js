@@ -28,41 +28,44 @@ async function fetchAdventures(city) {
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
-  console.log(adventures)
-  const container = document.getElementById("data");
+  // console.log(adventures)
+   const container = document.querySelector("#data");
 
   // let divtag2 = document.createElement("div");
 
   adventures.forEach((ele) => {
     let divtag = document.createElement("div");
 
-    divtag.className = "col-6 col-lg-3 mb-3";
+    divtag.classList = "col-6 col-lg-3 my-3";
 
-    divtag.innerHTML = `<a id = "${ele.id}" href="detail/?adventure=${ele.id}">
+    divtag.innerHTML = `
+    <a href="detail/?adventure=${ele.id}" id = "${ele.id}">
   
         <div class="activity-card">
   
           <img src="${ele.image}" class ="activity-card img" alt="..." />
   
           <div class ="category-banner">${ele.category}</div>
+          
+          <div clas='adventure-text'>
   
-          <div class="d-md-flex justify-content-between w-100 p-2">
+          <ul class="d-flex justify-content-between align-items-center flex-md-row flex-sm-column flex-column list-unstyled w-100 ">
   
-            <h5>${ele.name}</h5>
+            <li class = 'mt-3 px-2'>${ele.name}</li>
   
-            <p>${ele.currency} ${ele.costPerHead}</p>
+            <li clas = 'mt-3 px-2'>${ele.currency} ${ele.costPerHead}</li>
+
+            </ul>
   
-          </div>
+          <ul class="d-flex justify-content-between align-items-center flex-md-row flex-sm-column flex-column list-unstyled w-100 p-2">
   
-          <div class="d-md-flex justify-content-between w-100 p-2">
+            <li class = 'mt-3 px-2'>Duration</li>
   
-            <h5>Duration</h5>
-  
-            <p>${ele.duration} Hours</p>
-  
-          </div>
+            <li class = 'mt-3 px-2'>${ele.duration} Hours</li>
+          </ul>
   
         </div>
+      </div>  
   
       </a>`;
 
@@ -74,12 +77,22 @@ function addAdventureToDOM(adventures) {
 function filterByDuration(list, low, high) {
   // TODO: MODULE_FILTERS
   // 1. Filter adventures based on Duration and return filtered list
+  let filteredForDur = list.filter((adventures) => {
+    return (adventures.duration >= low) && (adventures.duration <=high)
+  });
+  console.log(filteredForDur)
+  return filteredForDur;
 }
 
 //Implementation of filtering by category which takes in a list of adventures, list of categories to be filtered upon and returns a filtered list of adventures.
 function filterByCategory(list, categoryList) {
   // TODO: MODULE_FILTERS
-  // 1. Filter adventures based on their Category and return filtered list
+  // 1. Filter adventures based on their Category and return filtered lisst
+  let filterCat = list.filter((adventures) => {
+    return categoryList.includes(adventures.category);
+  });
+  console.log(filterCat)
+  return filterCat;
 }
 
 // filters object looks like this filters = { duration: "", category: [] };
@@ -93,16 +106,28 @@ function filterFunction(list, filters) {
   // TODO: MODULE_FILTERS
   // 1. Handle the 3 cases detailed in the comments above and return the filtered list of adventures
   // 2. Depending on which filters are needed, invoke the filterByDuration() and/or filterByCategory() methods
-
+    if(filters.duration.length && filters.category.length > 0){
+      let filteredByArr = filterByCategory(list, filters.category)
+      let spt = filters.duration.split('-');
+      filteredByArr = filterByDuration(filteredByArr, parseInt(spt[0]), parseInt(spt[1]));
+      return filteredByArr;
+    } else if(filters.duration.length > 0){
+      let spt = filters.duration.split('-');
+      console.log(spt) 
+      return filterByDuration(list, parseInt(spt[0]), parseInt(spt[1]));
+    } else if(filters.category.length > 0) {
+      return filterByCategory(list, filters.category)
+    } 
   // Place holder for functionality to work in the Stubs
   return list;
-}
+}  
 
 //Implementation of localStorage API to save filters to local storage. This should get called everytime an onChange() happens in either of filter dropdowns
 function saveFiltersToLocalStorage(filters) {
   // TODO: MODULE_FILTERS
   // 1. Store the filters as a String to localStorage
-
+  let filterDetailsInLocalStrg = JSON.stringify(filters)
+  localStorage.setItem('filters',filterDetailsInLocalStrg)
   return true;
 }
 
@@ -110,8 +135,13 @@ function saveFiltersToLocalStorage(filters) {
 function getFiltersFromLocalStorage() {
   // TODO: MODULE_FILTERS
   // 1. Get the filters from localStorage and return String read as an object
-
+  let filtersFromStorage = localStorage.getItem('filters');
+  if(filtersFromStorage) {
+    return JSON.parse(filtersFromStorage)
+  }
+  
   // Place holder for functionality to work in the Stubs
+  // console.log(getFiltersFromLocalStorage)
   return null;
 }
 
@@ -122,6 +152,16 @@ function getFiltersFromLocalStorage() {
 function generateFilterPillsAndUpdateDOM(filters) {
   // TODO: MODULE_FILTERS
   // 1. Use the filters given as input, update the Duration Filter value and Generate Category Pills
+  let durationFilter = document.querySelector('#duration-select');
+  durationFilter.value = filters.duration;
+
+    let categoryPillsContainer = document.querySelector('#category-list')
+    filters.category.forEach((catg) => {
+        let div = document.createElement('div');
+        div.classList = 'category-filter';
+        div.textContent = catg;
+        categoryPillsContainer.append(div);
+      })
 }
 export {
   getCityFromURL,

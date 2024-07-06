@@ -16,7 +16,6 @@ async function init() {
       addCityToDOM(key.id, key.city, key.description, key.image);
     });
   }
-
 }
 
 //Implementation of fetch call
@@ -46,8 +45,7 @@ function addCityToDOM(id, city, description, image) {
   cityEl.innerHTML = `
                 <a href="pages/adventures/?city=${id}" id="${id}">
                   <div class="tile">
-                  <img class="img-responsive" src="${image}"/>
-                 
+                  <img class="img-responsive" src="${image}"/>                 
                     <div class="tile-text text-center" style='color:white'>
                       <h5>${city}</h5>
                       <p>${description}</p>

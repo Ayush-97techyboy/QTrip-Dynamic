@@ -11,8 +11,7 @@ body {
   overflow-y: auto;
   min-height: 100vh;
 }
-textarea:focus,
-input:focus {
+textarea:input:focus {
   outline: none;
 }
 a {
@@ -128,13 +127,13 @@ footer {
 .activity-card img {
   width: 100%;
   height: 100%;
-  /* border-radius: 8px; */
+  border-radius: 8px;
   -webkit-transition: 0.2s all;
-  /* -webkit-filter: brightness(70%); */
+  -webkit-filter: brightness(70%);
 }
 .activity-card img:hover {
   -webkit-filter: brightness(50%);
-  /* transform: scale(1.1); */
+  transform: scale(1.1);
 }
 
 /* activity-detail page css */
@@ -179,12 +178,8 @@ footer {
 }
 .category-banner {
   position: absolute;
-  /* height: 50px; */
   padding: 5px 10px;
   box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.3);
-  /*
-  box-shadow: 0px 9.4px 20.4px rgba(0, 0, 0, 0.13),
-    0px 9.2px 20.6px rgba(0, 0, 0, 0.1); */
   min-width: 50%;
   color: #fff;
   background: rgb(255, 145, 0);
@@ -192,7 +187,7 @@ footer {
   right: 0;
   z-index: 1;
   margin-top: 16px;
-  /* margin-right: 8px; */
+  margin-right: -10px;
   display: flex;
   justify-content: center;
   align-items: center;
